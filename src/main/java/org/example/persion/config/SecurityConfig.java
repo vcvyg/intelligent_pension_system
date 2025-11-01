@@ -33,6 +33,9 @@ public class SecurityConfig {
 
                 // 配置请求授权
                 .authorizeHttpRequests(auth -> auth
+                        // 静态资源(HTML、CSS、JS等)
+                        .requestMatchers("/", "/login.html", "/register.html", "/index.html").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                         // 公开接口(登录、注册等)
                         .requestMatchers("/api/auth/**").permitAll()
                         // 测试接口临时开放
