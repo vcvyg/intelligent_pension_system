@@ -4,6 +4,12 @@ const API_BASE_URL = 'http://localhost:8080/api';
 // 获取DOM元素
 const registerForm = document.getElementById('registerForm');
 const messageDiv = document.getElementById('message');
+const sendCodeBtn = document.getElementById('sendCodeBtn');
+const phoneInput = document.getElementById('phone');
+
+// 倒计时变量
+let countdown = 60;
+let countdownTimer = null;
 
 // 显示消息
 function showMessage(message, type) {
@@ -29,6 +35,75 @@ function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
+
+// 发送验证码
+sendCodeBtn.addEventListener('click', async () => {
+    const phone = phoneInput.value.trim();
+
+    // 验证手机号
+    if (!phone) {
+        showMessage('请先输入手机号', 'error');
+        phoneInput.focus();
+        return;
+    }
+
+    if (!validatePhone(phone)) {
+        showMessage('手机号格式不正确', 'error');
+        phoneInput.focus();
+        return;
+    }
+
+    // 禁用按钮
+    sendCodeBtn.disabled = true;
+    sendCodeBtn.textContent = '发送中...';
+
+    try {
+        // 调用发送验证码API
+        const response = await fetch(`${API_BASE_URL}/auth/sendCode`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                phone: phone
+            })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.code === 200) {
+            // 发送成功
+            const code = result.data;
+            showMessage(`验证码已生成: ${code} (有效期5分钟)`, 'success');
+
+            // 开始倒计时
+            countdown = 60;
+            sendCodeBtn.textContent = `${countdown}秒后重新获取`;
+
+            countdownTimer = setInterval(() => {
+                countdown--;
+                if (countdown > 0) {
+                    sendCodeBtn.textContent = `${countdown}秒后重新获取`;
+                } else {
+                    clearInterval(countdownTimer);
+                    sendCodeBtn.disabled = false;
+                    sendCodeBtn.textContent = '获取验证码';
+                }
+            }, 1000);
+
+        } else {
+            showMessage(result.message || '发送失败,请重试', 'error');
+            sendCodeBtn.disabled = false;
+            sendCodeBtn.textContent = '获取验证码';
+        }
+
+    } catch (error) {
+        console.error('发送验证码错误:', error);
+        showMessage('网络错误,请检查后端服务是否启动', 'error');
+        sendCodeBtn.disabled = false;
+        sendCodeBtn.textContent = '获取验证码';
+    }
+});
 
 // 实时验证输入
 document.getElementById('phone').addEventListener('blur', function() {
@@ -78,12 +153,13 @@ registerForm.addEventListener('submit', async (e) => {
     const confirmPassword = document.getElementById('confirmPassword').value;
     const realName = document.getElementById('realName').value.trim();
     const phone = document.getElementById('phone').value.trim();
+    const code = document.getElementById('code').value.trim();
     const email = document.getElementById('email').value.trim();
     const role = document.getElementById('role').value;
     const agree = document.getElementById('agree').checked;
 
     // 验证表单
-    if (!username || !password || !realName || !phone || !role) {
+    if (!username || !password || !realName || !phone || !code || !role) {
         showMessage('请填写所有必填项', 'error');
         return;
     }
@@ -126,6 +202,7 @@ registerForm.addEventListener('submit', async (e) => {
                 password: password,
                 realName: realName,
                 phone: phone,
+                code: code,
                 email: email || null,
                 role: role
             })

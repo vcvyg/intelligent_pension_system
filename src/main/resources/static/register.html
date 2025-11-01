@@ -44,6 +44,15 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="code">验证码 <span class="required">*</span></label>
+                    <div class="code-input-group">
+                        <input type="text" id="code" name="code" placeholder="请输入验证码" required maxlength="6">
+                        <button type="button" id="sendCodeBtn" class="send-code-btn">获取验证码</button>
+                    </div>
+                    <span class="hint">验证码将显示在网页提示框中(开发测试)</span>
+                </div>
+
+                <div class="form-group">
                     <label for="email">邮箱</label>
                     <input type="email" id="email" name="email" placeholder="请输入邮箱">
                 </div>

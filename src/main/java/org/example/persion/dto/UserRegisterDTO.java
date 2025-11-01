@@ -28,4 +28,7 @@ public class UserRegisterDTO {
 
     @NotBlank(message = "角色不能为空")
     private String role; // ADMIN, FAMILY, MEDICAL, ELDERLY
+
+    @NotBlank(message = "验证码不能为空")
+    private String code; // 验证码
 }
