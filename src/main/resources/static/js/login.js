@@ -77,24 +77,9 @@ loginForm.addEventListener('submit', async (e) => {
                 localStorage.removeItem('rememberedUsername');
             }
 
-            // 1.5秒后根据角色跳转到不同页面
+            // 1.5秒后跳转到主页
             setTimeout(() => {
-                switch (role) {
-                    case 'ADMIN':
-                        window.location.href = 'admin/index.html';
-                        break;
-                    case 'FAMILY':
-                        window.location.href = 'family/index.html';
-                        break;
-                    case 'MEDICAL':
-                        window.location.href = 'medical/index.html';
-                        break;
-                    case 'ELDERLY':
-                        window.location.href = 'elderly/index.html';
-                        break;
-                    default:
-                        window.location.href = 'index.html';
-                }
+                window.location.href = 'index.html';
             }, 1500);
 
         } else {
