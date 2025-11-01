@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧养老系统 - 首页</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <h1>智慧养老系统</h1>
+            </div>
+            <div class="user-info">
+                <span id="welcomeText">欢迎您!</span>
+                <button id="logoutBtn" class="logout-btn">退出登录</button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="welcome-card">
+                <h2>欢迎使用智慧养老系统</h2>
+                <p>登录成功! 系统正在为您准备...</p>
+                <div class="user-details" id="userDetails"></div>
+            </div>
+
+            <div class="quick-actions">
+                <h3>快捷操作</h3>
+                <div class="action-cards" id="actionCards">
+                    <!-- 根据角色动态生成 -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
