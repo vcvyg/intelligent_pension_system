@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(mkdir:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\n初始化智慧养老系统项目\n\n- 创建Spring Boot 3.5.7 + Java 21基础架构\n- 配置SQL Server数据库连接\n- 添加MyBatis Plus、Redis、WebSocket等核心依赖\n- 实现三端分离架构(管理端/子女端/医护端)\n- 创建基础实体类(用户、老人信息、健康数据)\n- 配置跨域和MyBatis Plus自动填充\n- 添加统一响应结果封装和全局异常处理\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git config:*)",
+      "Bash(git commit:*)",
+      "Bash(git log:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "Bash(gemini -p \"请分析一下这个智慧养老系统项目的代码结构和质量。项目技术栈: Spring Boot 3.5.7 + Java 21, SQL Server数据库, MyBatis Plus 3.5.9, Redis缓存, WebSocket实时通信, Spring Security + JWT认证。主要文件: PersionApplication.java启动类, pom.xml依赖配置, 三端分离架构admin/family/medical, 基础实体类User/ElderlyInfo/HealthData, 统一响应封装和全局异常处理。请评估: 1.架构设计是否合理 2.依赖配置是否完善 3.是否存在潜在问题 4.有什么优化建议\")"
     ],
     "deny": [],
     "ask": []
