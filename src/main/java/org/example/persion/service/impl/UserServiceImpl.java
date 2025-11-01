@@ -7,7 +7,7 @@ import org.example.persion.dto.UserRegisterDTO;
 import org.example.persion.entity.User;
 import org.example.persion.repository.UserMapper;
 import org.example.persion.security.JwtUtil;
-import org.example.persion.service.SmsService;
+import org.example.persion.service.EmailService;
 import org.example.persion.service.UserService;
 import org.example.persion.vo.LoginVO;
 import org.example.persion.vo.UserInfoVO;
@@ -32,12 +32,12 @@ public class UserServiceImpl implements UserService {
     private JwtUtil jwtUtil;
 
     @Autowired
-    private SmsService smsService;
+    private EmailService emailService;
 
     @Override
     public User register(UserRegisterDTO dto) {
-        // 验证验证码
-        if (!smsService.verifyCode(dto.getPhone(), dto.getCode())) {
+        // 验证邮箱验证码
+        if (!emailService.verifyCode(dto.getEmail(), dto.getCode())) {
             throw new BusinessException("验证码错误或已过期");
         }
 

@@ -10,7 +10,14 @@
       "Bash(git remote add:*)",
       "Bash(git push:*)",
       "Bash(gemini -p \"请分析一下这个智慧养老系统项目的代码结构和质量。项目技术栈: Spring Boot 3.5.7 + Java 21, SQL Server数据库, MyBatis Plus 3.5.9, Redis缓存, WebSocket实时通信, Spring Security + JWT认证。主要文件: PersionApplication.java启动类, pom.xml依赖配置, 三端分离架构admin/family/medical, 基础实体类User/ElderlyInfo/HealthData, 统一响应封装和全局异常处理。请评估: 1.架构设计是否合理 2.依赖配置是否完善 3.是否存在潜在问题 4.有什么优化建议\")",
-      "Bash(gemini -p \"请审查这次新增的代码质量。本次更新内容: 1.创建DTO类(LoginDTO/UserRegisterDTO/ElderlyInfoDTO/HealthDataDTO) - 包含参数校验注解 2.创建VO类(LoginVO/UserInfoVO/ElderlyInfoVO/HealthDataVO) - 用于返回数据 3.实现JWT工具类JwtUtil - 使用JJWT 0.12.6生成和验证Token 4.实现JwtAuthenticationFilter - Spring Security JWT过滤器 5.配置SecurityConfig - 无状态session、开放登录注册接口 6.实现UserService和UserServiceImpl - 用户注册登录业务逻辑 7.创建AuthController - 认证接口。请评估代码质量、安全性和最佳实践。\")"
+      "Bash(gemini -p \"请审查这次新增的代码质量。本次更新内容: 1.创建DTO类(LoginDTO/UserRegisterDTO/ElderlyInfoDTO/HealthDataDTO) - 包含参数校验注解 2.创建VO类(LoginVO/UserInfoVO/ElderlyInfoVO/HealthDataVO) - 用于返回数据 3.实现JWT工具类JwtUtil - 使用JJWT 0.12.6生成和验证Token 4.实现JwtAuthenticationFilter - Spring Security JWT过滤器 5.配置SecurityConfig - 无状态session、开放登录注册接口 6.实现UserService和UserServiceImpl - 用户注册登录业务逻辑 7.创建AuthController - 认证接口。请评估代码质量、安全性和最佳实践。\")",
+      "Bash(claude mcp list:*)",
+      "Bash(claude mcp add:*)",
+      "Bash(npx @modelcontextprotocol/server-figma:*)",
+      "Bash(npm search:*)",
+      "Bash(claude mcp remove:*)",
+      "Bash(FIGMA_PERSONAL_ACCESS_TOKEN=NkCciin1mR0zTu9jL0IjbiIJ3Ft2Kg npx:*)",
+      "WebFetch(domain:www.awwwards.com)"
     ],
     "deny": [],
     "ask": []

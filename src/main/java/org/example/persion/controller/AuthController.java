@@ -3,10 +3,10 @@ package org.example.persion.controller;
 import jakarta.validation.Valid;
 import org.example.persion.common.Result;
 import org.example.persion.dto.LoginDTO;
-import org.example.persion.dto.SendCodeDTO;
+import org.example.persion.dto.SendEmailCodeDTO;
 import org.example.persion.dto.UserRegisterDTO;
 import org.example.persion.entity.User;
-import org.example.persion.service.SmsService;
+import org.example.persion.service.EmailService;
 import org.example.persion.service.UserService;
 import org.example.persion.vo.LoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +23,16 @@ public class AuthController {
     private UserService userService;
 
     @Autowired
-    private SmsService smsService;
+    private EmailService emailService;
 
     /**
-     * 发送验证码(模拟)
+     * 发送邮箱验证码
      */
-    @PostMapping("/sendCode")
-    public Result<String> sendCode(@Valid @RequestBody SendCodeDTO dto) {
-        String code = smsService.sendCode(dto.getPhone());
-        // 注意: 仅用于开发测试,实际项目不应返回验证码
-        return Result.success(code);
+    @PostMapping("/sendEmailCode")
+    public Result<String> sendEmailCode(@Valid @RequestBody SendEmailCodeDTO dto) {
+        String code = emailService.sendVerificationCode(dto.getEmail());
+        // 注意: 实际项目中不应返回验证码,这里仅用于开发测试
+        return Result.success("验证码已发送到邮箱: " + dto.getEmail());
     }
 
     /**

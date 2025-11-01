@@ -1,6 +1,26 @@
 // API基础URL
 const API_BASE_URL = 'http://localhost:8080/api';
 
+// 初始化Swiper轮播
+document.addEventListener('DOMContentLoaded', () => {
+    // 初始化特性卡片轮播
+    const swiper = new Swiper('.slider-features', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        effect: 'slide',
+        speed: 600,
+    });
+});
+
 // 获取DOM元素
 const loginForm = document.getElementById('loginForm');
 const messageDiv = document.getElementById('message');
@@ -8,7 +28,7 @@ const messageDiv = document.getElementById('message');
 // 显示消息
 function showMessage(message, type) {
     messageDiv.textContent = message;
-    messageDiv.className = `message ${type}`;
+    messageDiv.className = `message-toast ${type}`;
     messageDiv.style.display = 'block';
 
     // 3秒后自动隐藏
@@ -34,9 +54,9 @@ loginForm.addEventListener('submit', async (e) => {
 
     // 禁用提交按钮,防止重复提交
     const submitBtn = loginForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
     submitBtn.disabled = true;
-    submitBtn.textContent = '登录中...';
+    submitBtn.classList.add('loading');
+    submitBtn.querySelector('span').textContent = '登录中...';
 
     try {
         // 调用登录API
@@ -58,7 +78,8 @@ loginForm.addEventListener('submit', async (e) => {
             if (result.data.userInfo.role !== role) {
                 showMessage('登录身份不匹配,请重新选择', 'error');
                 submitBtn.disabled = false;
-                submitBtn.textContent = originalText;
+                submitBtn.classList.remove('loading');
+                submitBtn.querySelector('span').textContent = '登录';
                 return;
             }
 
@@ -86,14 +107,16 @@ loginForm.addEventListener('submit', async (e) => {
             // 登录失败
             showMessage(result.message || '登录失败,请检查用户名和密码', 'error');
             submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
+            submitBtn.classList.remove('loading');
+            submitBtn.querySelector('span').textContent = '登录';
         }
 
     } catch (error) {
         console.error('登录错误:', error);
         showMessage('网络错误,请检查后端服务是否启动', 'error');
         submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
+        submitBtn.classList.remove('loading');
+        submitBtn.querySelector('span').textContent = '登录';
     }
 });
 
