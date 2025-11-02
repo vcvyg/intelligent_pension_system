@@ -17,7 +17,9 @@
       "Bash(npm search:*)",
       "Bash(claude mcp remove:*)",
       "Bash(FIGMA_PERSONAL_ACCESS_TOKEN=NkCciin1mR0zTu9jL0IjbiIJ3Ft2Kg npx:*)",
-      "WebFetch(domain:www.awwwards.com)"
+      "WebFetch(domain:www.awwwards.com)",
+      "WebFetch(domain:vcvyg.github.io)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": [],
     "ask": []

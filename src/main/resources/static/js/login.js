@@ -3,22 +3,46 @@ const API_BASE_URL = 'http://localhost:8080/api';
 
 // 初始化Swiper轮播
 document.addEventListener('DOMContentLoaded', () => {
-    // 初始化特性卡片轮播
-    const swiper = new Swiper('.slider-features', {
-        slidesPerView: 1,
-        spaceBetween: 30,
+    // 初始化全屏轮播
+    const heroSwiper = new Swiper('.hero-swiper', {
+        direction: 'horizontal',
         loop: true,
         autoplay: {
-            delay: 4000,
+            delay: 5000,
             disableOnInteraction: false,
         },
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
         },
-        effect: 'slide',
-        speed: 600,
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        },
+        speed: 1000,
     });
+
+    // 向下滚动提示点击事件
+    const scrollIndicator = document.getElementById('scrollIndicator');
+    const loginSection = document.getElementById('loginSection');
+
+    scrollIndicator.addEventListener('click', () => {
+        loginSection.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // 监听滚动,自动隐藏滚动提示
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > 100) {
+            scrollIndicator.style.opacity = '0';
+            scrollIndicator.style.pointerEvents = 'none';
+        } else {
+            scrollIndicator.style.opacity = '1';
+            scrollIndicator.style.pointerEvents = 'auto';
+        }
+        lastScrollTop = scrollTop;
+    }, false);
 });
 
 // 获取DOM元素
@@ -28,7 +52,7 @@ const messageDiv = document.getElementById('message');
 // 显示消息
 function showMessage(message, type) {
     messageDiv.textContent = message;
-    messageDiv.className = `message-toast ${type}`;
+    messageDiv.className = `message ${type}`;
     messageDiv.style.display = 'block';
 
     // 3秒后自动隐藏
@@ -56,7 +80,6 @@ loginForm.addEventListener('submit', async (e) => {
     const submitBtn = loginForm.querySelector('button[type="submit"]');
     submitBtn.disabled = true;
     submitBtn.classList.add('loading');
-    submitBtn.querySelector('span').textContent = '登录中...';
 
     try {
         // 调用登录API
@@ -79,7 +102,6 @@ loginForm.addEventListener('submit', async (e) => {
                 showMessage('登录身份不匹配,请重新选择', 'error');
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('loading');
-                submitBtn.querySelector('span').textContent = '登录';
                 return;
             }
 
@@ -108,7 +130,6 @@ loginForm.addEventListener('submit', async (e) => {
             showMessage(result.message || '登录失败,请检查用户名和密码', 'error');
             submitBtn.disabled = false;
             submitBtn.classList.remove('loading');
-            submitBtn.querySelector('span').textContent = '登录';
         }
 
     } catch (error) {
@@ -116,7 +137,6 @@ loginForm.addEventListener('submit', async (e) => {
         showMessage('网络错误,请检查后端服务是否启动', 'error');
         submitBtn.disabled = false;
         submitBtn.classList.remove('loading');
-        submitBtn.querySelector('span').textContent = '登录';
     }
 });
 

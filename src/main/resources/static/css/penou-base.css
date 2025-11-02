@@ -1,0 +1,197 @@
+/* ============================================
+   penou-base.css - 从民宿网站提取的基础样式
+   来源: vcvyg.github.io/css/penou.css
+   精简版,只包含登录注册页需要的组件
+   ============================================ */
+
+/* === 1. 全局重置 === */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* === 2. 输入框样式 (w-input) - 民宿风格 === */
+.w-input,
+.w-select {
+    display: block;
+    width: 100%;
+    height: 38px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333333;
+    background-color: #ffffff;
+    border: 1px solid #e8e8e8;  /* 民宿风格:极细边框 */
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.w-input::placeholder,
+.w-select::placeholder {
+    color: #999;
+}
+
+.w-input:focus,
+.w-select:focus {
+    border-color: #000;  /* 民宿风格:黑色边框 */
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.w-input[disabled],
+.w-select[disabled] {
+    cursor: not-allowed;
+    background-color: #eeeeee;
+}
+
+.w-select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23666' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 44px;
+}
+
+textarea.w-input {
+    height: auto;
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* === 3. 按钮样式 (w-button) === */
+.w-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #3898EC;
+    color: white;
+    border: 0;
+    border-radius: 8px;
+    line-height: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.w-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(56, 152, 236, 0.3);
+}
+
+.w-button:active {
+    transform: translateY(0);
+}
+
+input.w-button {
+    -webkit-appearance: button;
+    appearance: button;
+}
+
+/* === 4. 工具类 === */
+.w-block {
+    display: block;
+}
+
+.w-inline-block {
+    max-width: 100%;
+    display: inline-block;
+}
+
+.w-hidden {
+    display: none;
+}
+
+.w-clearfix:before,
+.w-clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.w-clearfix:after {
+    clear: both;
+}
+
+/* === 5. Slider 分页器样式 (民宿风格横条) === */
+.w-slider-nav {
+    position: absolute;
+    z-index: 2;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    height: 40px;
+    padding-top: 10px;
+}
+
+.w-slider-dot {
+    position: relative;
+    display: inline-block;
+    width: 60px;          /* 民宿风格:横条 */
+    height: 2px;          /* 民宿风格:细线 */
+    background-color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    margin: 0 6px 0.5em;
+    transition: all 0.3s ease;
+    border-radius: 0;     /* 民宿风格:无圆角 */
+}
+
+.w-slider-dot.w-active {
+    background-color: #fff;
+    width: 80px;          /* 激活后更长 */
+}
+
+.w-slider-dot:focus {
+    outline: none;
+    box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5);
+}
+
+.w-slider-dot:focus.w-active {
+    box-shadow: none;
+}
+
+/* === 6. 表单标签 === */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #333;
+}
+
+/* === 7. 响应式辅助类 === */
+@media screen and (max-width: 991px) {
+    .w-hidden-medium {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .w-hidden-small {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .w-hidden-tiny {
+        display: none !important;
+    }
+}

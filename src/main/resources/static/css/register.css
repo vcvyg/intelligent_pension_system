@@ -709,3 +709,231 @@ body {
         transform: rotate(360deg);
     }
 }
+
+/* ============================================
+   注册页改造 - 融合民宿网站风格
+   基于 vcvyg.github.io 设计理念
+   ============================================ */
+
+/* === 任务6: 左侧背景装饰元素增强 (民宿风格) === */
+/* 已有的装饰在60-82行,现在增强 */
+.content-side {
+    /* 确保有overflow: hidden来限制装饰元素 */
+    overflow: hidden;
+}
+
+/* 增加第三个装饰圆环 (民宿风格的极细边框圆) */
+.content-side .logo-section::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.15);  /* 极细白色边框 */
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: rotate 20s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes rotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* === 任务7: 表单输入框1px细边框 (民宿风格) === */
+.input-wrapper input,
+.select-wrapper select {
+    border: 1px solid #e8e8e8;  /* 从2px改为1px */
+    background: #fafafa;
+    transition: all 0.2s ease;  /* 加快过渡 */
+}
+
+.input-wrapper input:focus,
+.select-wrapper select:focus {
+    background: white;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(250, 93, 41, 0.06);  /* 浅色阴影 */
+}
+
+.code-input-wrapper input {
+    border: 1px solid #e8e8e8;
+    background: #fafafa;
+}
+
+.code-input-wrapper input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(250, 93, 41, 0.06);
+}
+
+/* 验证码按钮边框优化 */
+.btn-code {
+    border: 1px solid var(--color-primary);  /* 从2px改为1px */
+}
+
+/* === 任务8: 卡片多层阴影 (民宿风格) === */
+.feature-card {
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);  /* 增加极细边框 */
+}
+
+.feature-card:hover {
+    transform: translateY(-12px);  /* 更大的提升 */
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.06),
+        0 16px 56px rgba(0, 0, 0, 0.12);
+}
+
+/* 表单侧边栏阴影优化 */
+.form-side {
+    box-shadow: -2px 0 16px rgba(0, 0, 0, 0.04);
+}
+
+/* 主按钮扫光效果 (民宿风格) */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.6s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary span,
+.btn-primary svg {
+    position: relative;
+    z-index: 2;
+}
+
+/* 分页器优化为横条样式 (民宿风格) */
+.swiper-pagination-bullet {
+    width: 40px !important;     /* 横条 */
+    height: 2px !important;     /* 细线 */
+    background: rgba(255, 255, 255, 0.4) !important;
+    border-radius: 0 !important;
+}
+
+.swiper-pagination-bullet-active {
+    width: 60px !important;
+    background: white !important;
+}
+
+/* Checkbox样式增强 */
+.checkmark {
+    border: 1px solid var(--color-border);  /* 从2px改为1px */
+}
+
+/* 链接下划线动画 */
+.link-text {
+    position: relative;
+}
+
+.link-text::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.link-text:hover::after {
+    width: 100%;
+}
+
+.link-primary {
+    position: relative;
+}
+
+.link-primary::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.link-primary:hover::after {
+    width: 100%;
+}
+
+/* 消息提示优化 */
+.message-toast {
+    border: 1px solid transparent;
+}
+
+.message-toast.success {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    border-color: #c3e6cb;
+}
+
+.message-toast.error {
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+    border-color: #f5c6cb;
+}
+
+/* Logo图标旋转动画优化 */
+.logo-icon svg {
+    transition: transform 0.3s ease;
+}
+
+.logo-icon:hover svg {
+    transform: rotate(5deg) scale(1.05);
+}
+
+/* 卡片图标动画增强 */
+.card-icon svg {
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+}
+
+/* 表单容器微动画 */
+.form-container {
+    transition: transform 0.3s ease;
+}
+
+/* 输入框占位符优化 */
+.input-wrapper input::placeholder,
+.code-input-wrapper input::placeholder {
+    color: #999;
+    font-weight: 400;
+}
+
+/* 响应式优化 */
+@media (max-width: 991px) {
+    .content-side .logo-section::before {
+        width: 200px;
+        height: 200px;
+    }
+}
+

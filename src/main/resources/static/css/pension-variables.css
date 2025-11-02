@@ -1,0 +1,91 @@
+/* ============================================
+   pension-variables.css
+   智慧养老系统 + 民宿风格 融合配色方案
+   ============================================ */
+
+:root {
+    /* === 主题渐变色 (保留原始设计) === */
+    --gradient-purple: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-pink: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-blue: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-orange: linear-gradient(135deg, #FA5D29 0%, #502bd8 100%);
+
+    /* === 中性色系统 (借鉴民宿) === */
+    --color-white: #ffffff;
+    --color-bg-light: #fafafa;
+    --color-bg-lighter: #f8f8f8;
+    --color-bg-gray: #f5f5f5;
+
+    /* === 边框色 (民宿风格:极细) === */
+    --color-border: #e8e8e8;
+    --color-border-light: #f0f0f0;
+    --color-border-lighter: #f5f5f5;
+
+    /* === 文字颜色 === */
+    --color-text-black: #000000;      /* 民宿风格:纯黑 */
+    --color-text-dark: #1a1a1a;       /* 深灰(更友好) */
+    --color-text-gray: #666666;
+    --color-text-light: #999999;
+    --color-text-lighter: #cccccc;
+
+    /* === 功能色 === */
+    --color-primary: #667eea;         /* 主蓝色 */
+    --color-secondary: #764ba2;       /* 辅紫色 */
+    --color-success: #51cf66;
+    --color-warning: #ffd43b;
+    --color-danger: #ff6b6b;
+    --color-info: #4dabf7;
+
+    /* === 注册页专用颜色 === */
+    --color-orange: #FA5D29;
+    --color-purple: #502bd8;
+    --color-accent: #FFF083;
+    --color-green: #AAEEC4;
+
+    /* === 阴影系统 (民宿风格:多层) === */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.16);
+
+    /* 双层阴影组合 */
+    --shadow-card:
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        0 8px 32px rgba(0, 0, 0, 0.08);
+    --shadow-card-hover:
+        0 4px 16px rgba(0, 0, 0, 0.06),
+        0 16px 56px rgba(0, 0, 0, 0.12);
+
+    /* === 圆角 === */
+    --radius-sm: 8px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+
+    /* === 过渡时间 === */
+    --transition-fast: 0.15s;
+    --transition-base: 0.2s;
+    --transition-slow: 0.3s;
+    --transition-slower: 0.5s;
+
+    /* === 间距 === */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+}
+
+/* 深色模式 (可选,未来扩展) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-white: #1a1a1a;
+        --color-bg-light: #2d2d2d;
+        --color-bg-lighter: #252525;
+        --color-text-dark: #ffffff;
+        --color-text-gray: #a0a0a0;
+        --color-border: #404040;
+    }
+}
