@@ -42,9 +42,18 @@ public class UserServiceImpl implements UserService {
         }
 
         // 检查用户名是否已存在
-        User existUser = getUserByUsername(dto.getUsername());
-        if (existUser != null) {
-            throw new BusinessException("用户名已存在");
+        if (userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getUsername, dto.getUsername())) != null) {
+            throw new BusinessException("该用户名已被注册");
+        }
+
+        // 检查邮箱是否已存在
+        if (userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getEmail, dto.getEmail())) != null) {
+            throw new BusinessException("该邮箱已被注册");
+        }
+
+        // 检查手机号是否已存在
+        if (userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getPhone, dto.getPhone())) != null) {
+            throw new BusinessException("该手机号已被注册");
         }
 
         // 创建用户
